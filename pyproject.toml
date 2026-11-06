@@ -1,0 +1,36 @@
+[project]
+name = "texnikum-backend"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "aiogram>=3.20.0.post0",
+    "alembic>=1.16.2",
+    "alembic-postgresql-enum>=1.7.0",
+    "asyncpg>=0.30.0",
+    "fastapi>=0.115.14",
+    "psycopg2-binary>=2.9.10",
+    "pydantic-settings>=2.10.1",
+    "pydantic[email]>=2.11.7",
+    "sqlalchemy>=2.0.41",
+    "uvicorn>=0.35.0",
+    "redis>=5.0.7",
+    "bcrypt==3.2.2",
+    "passlib>=1.7.4",
+    "taskipy>=1.14.1",
+    "securely>=0.2.0",
+    "python-jose[cryptography]>=3.5.0",
+    "python-multipart>=0.0.20",
+]
+[dependency-groups]
+
+task = [
+    "taskipy>=1.14.1",
+
+]
+
+[tool.taskipy.tasks]
+generate = "alembic revision --autogenerate -m"
+migrate = "alembic upgrade head"
+dev = "uv run uvicorn backend.main:app --reload --port 8001"
